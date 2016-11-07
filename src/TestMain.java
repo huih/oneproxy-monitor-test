@@ -54,6 +54,7 @@ public class TestMain {
 			tsss.test_select_from_master(conn);
 			tsss.test_select_slave_master(conn);
 			tsss.test_select_master_slave_master(conn);
+			tsss.test_select_slave_master_begin(conn);
 				
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -7,13 +7,7 @@ public class TestSqlServerPreparedStatement {
 
 	private String master_db_type = "master";
 	private String slave_db_type = "slave";
-
-	private String getMethodName() {  
-        StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();  
-        StackTraceElement e = stacktrace[2];  
-        String methodName = e.getMethodName();  
-        return methodName;  
-    }
+	private TestSqlServerTool tool = new TestSqlServerTool();
 	
 	//read data from slave database.
 	public void test_select_bak_db(Connection conn) throws Exception {
@@ -28,7 +22,7 @@ public class TestSqlServerPreparedStatement {
 			}
 		}
 		rs.close();
-		System.out.println(getMethodName() + " success");
+		System.out.println(tool.getMethodName() + " success");
 	}
 	
 	//read data from master 
@@ -48,7 +42,7 @@ public class TestSqlServerPreparedStatement {
 		conn.commit();
 		conn.setAutoCommit(true);
 		
-		System.out.println(getMethodName() + " success");
+		System.out.println(tool.getMethodName() + " success");
 	}
 	
 	//first read from master
@@ -76,7 +70,7 @@ public class TestSqlServerPreparedStatement {
 				throw new Exception("the data is not from master");
 			}
 		}
-		System.out.println(getMethodName() + " success");
+		System.out.println(tool.getMethodName() + " success");
 	}
 	//frist update data, and then read data.
 	public void test_update_read_slave_db(Connection conn) throws Exception {
@@ -110,9 +104,6 @@ public class TestSqlServerPreparedStatement {
 				throw new Exception("the data is not from salve");
 			}
 		}
-		System.out.println(getMethodName() + " success");
+		System.out.println(tool.getMethodName() + " success");
 	}
-	
-	
-	
 }
